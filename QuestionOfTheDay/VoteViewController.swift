@@ -9,8 +9,8 @@ import UIKit
 
 class VoteViewController: UIViewController {
 
-    var QuestionOfTheDay:QuestionOfTheDay!
-    let stat:Statistician = Statistician()
+    var questionOfTheDay:QuestionOfTheDay!
+    let statisticsObject:Statistician = Statistician()
     
     @IBOutlet weak var QuestionLBL: UILabel!
     @IBOutlet weak var AnswerALBL: UILabel!
@@ -19,32 +19,34 @@ class VoteViewController: UIViewController {
     
     @IBAction func OptionAButton(_ sender: Any) {
         let option:Opinion = Opinion(answer: 0)
-        stat.saveOpinion(Opinion: option)
+        statisticsObject.saveOpinion(Opinion: option)
     }
     
     @IBAction func OptionBButton(_ sender: Any) {
         let option:Opinion = Opinion(answer: 1)
-        stat.saveOpinion(Opinion: option)
+        statisticsObject.saveOpinion(Opinion: option)
     }
     
     @IBAction func OptionCButton(_ sender: Any) {
         let option:Opinion = Opinion(answer: 2)
-        stat.saveOpinion(Opinion: option)
+        statisticsObject.saveOpinion(Opinion: option)
     }
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        QuestionLBL?.text = stat.fetchQuestionOfTheDay().question
-        AnswerALBL?.text = stat.fetchQuestionOfTheDay().answer0
-        AnswerBLBL?.text = stat.fetchQuestionOfTheDay().answer1
-        AnswerCLBL?.text = stat.fetchQuestionOfTheDay().answer2
+        //fetching the question of the day from stat class
+        QuestionLBL?.text = statisticsObject.fetchQuestionOfTheDay().question
+        AnswerALBL?.text = statisticsObject.fetchQuestionOfTheDay().answer0
+        AnswerBLBL?.text = statisticsObject.fetchQuestionOfTheDay().answer1
+        AnswerCLBL?.text = statisticsObject.fetchQuestionOfTheDay().answer2
         // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        QuestionOfTheDay = stat.fetchQuestionOfTheDay()
+        //updated the data when we switch screens
+        questionOfTheDay = statisticsObject.fetchQuestionOfTheDay()
     }
     
     override func didReceiveMemoryWarning() {

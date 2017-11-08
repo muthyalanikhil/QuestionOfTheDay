@@ -9,8 +9,9 @@ import UIKit
 
 class StatisticsViewController: UIViewController {
 
-    let stat:Statistician = Statistician()
+    let statisticsObject:Statistician = Statistician()
     var opinionArray:[Opinion] = []
+    
     @IBOutlet weak var QuestionLBL: UILabel!
     @IBOutlet weak var AnswerALBL: UILabel!
     @IBOutlet weak var AnswerBLBL: UILabel!
@@ -21,14 +22,18 @@ class StatisticsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var answer:[Double] = stat.findPercentage()
+        var answer:[Double] = statisticsObject.findPercentage()
+        
+        //getting percentages
         AnswerAPercent.text = String(format: "%.2f%%",answer[0])
         AnswerBPercent.text = String(format: "%.2f%%",answer[1])
         AnswerCPercent.text = String(format: "%.2f%%",answer[2])
-        QuestionLBL?.text = stat.fetchQuestionOfTheDay().question
-        AnswerALBL?.text = stat.fetchQuestionOfTheDay().answer0
-        AnswerBLBL?.text = stat.fetchQuestionOfTheDay().answer1
-        AnswerCLBL?.text = stat.fetchQuestionOfTheDay().answer2
+        
+        //updating labels with questions and answer percentages
+        QuestionLBL?.text = statisticsObject.fetchQuestionOfTheDay().question
+        AnswerALBL?.text = statisticsObject.fetchQuestionOfTheDay().answer0
+        AnswerBLBL?.text = statisticsObject.fetchQuestionOfTheDay().answer1
+        AnswerCLBL?.text = statisticsObject.fetchQuestionOfTheDay().answer2
         // Do any additional setup after loading the view.
     }
 
@@ -39,14 +44,14 @@ class StatisticsViewController: UIViewController {
     
 
     override func viewWillAppear(_ animated: Bool) {
-        var answer:[Double] = stat.findPercentage()
+        var answer:[Double] = statisticsObject.findPercentage()
         AnswerAPercent.text = String(format: "%.2f%%",answer[0])
         AnswerBPercent.text = String(format: "%.2f%%",answer[1])
         AnswerCPercent.text = String(format: "%.2f%%",answer[2])
-        QuestionLBL?.text = stat.fetchQuestionOfTheDay().question
-        AnswerALBL?.text = stat.fetchQuestionOfTheDay().answer0
-        AnswerBLBL?.text = stat.fetchQuestionOfTheDay().answer1
-        AnswerCLBL?.text = stat.fetchQuestionOfTheDay().answer2
+        QuestionLBL?.text = statisticsObject.fetchQuestionOfTheDay().question
+        AnswerALBL?.text = statisticsObject.fetchQuestionOfTheDay().answer0
+        AnswerBLBL?.text = statisticsObject.fetchQuestionOfTheDay().answer1
+        AnswerCLBL?.text = statisticsObject.fetchQuestionOfTheDay().answer2
     }
     
     /*
