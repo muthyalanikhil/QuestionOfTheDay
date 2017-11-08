@@ -10,7 +10,7 @@ import UIKit
 class StatisticsViewController: UIViewController {
 
     let stat:Statistician = Statistician()
-    
+    var opinionArray:[Opinion] = []
     @IBOutlet weak var QuestionLBL: UILabel!
     @IBOutlet weak var AnswerALBL: UILabel!
     @IBOutlet weak var AnswerBLBL: UILabel!
@@ -38,6 +38,17 @@ class StatisticsViewController: UIViewController {
     }
     
 
+    override func viewWillAppear(_ animated: Bool) {
+        var answer:[Double] = stat.findPercentage()
+        AnswerAPercent.text = String(format: "%.2f%%",answer[0])
+        AnswerBPercent.text = String(format: "%.2f%%",answer[1])
+        AnswerCPercent.text = String(format: "%.2f%%",answer[2])
+        QuestionLBL?.text = stat.fetchQuestionOfTheDay().question
+        AnswerALBL?.text = stat.fetchQuestionOfTheDay().answer0
+        AnswerBLBL?.text = stat.fetchQuestionOfTheDay().answer1
+        AnswerCLBL?.text = stat.fetchQuestionOfTheDay().answer2
+    }
+    
     /*
     // MARK: - Navigation
 
